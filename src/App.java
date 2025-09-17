@@ -78,9 +78,53 @@ public class App {
                         System.out.println("Esa habitación ya está libre.");
                     }
                     break;
+
+                case 3:
+                    // Ver habitaciones
+                    System.out.println("\nEstado del hotel:");
+                    int tamanioHotel = hotel.length;
+                    for (int i = 0; i < tamanioHotel; i++) {
+                        for (int j = 0; j < hotel[i].length; j++) {
+                            int num = (i + 1) * 100 + (j + 1);
+                            String estado = hotel[i][j] ? "Ocupada" : "Libre";
+                            System.out.print(num + ": " + estado + " | ");
+                        }
+                        System.out.println();
+                    }
+                    break;
+
+                case 4:
+                    // Reporte
+                    System.out.println("\n=== REPORTE DEL HOTEL ===");
+                    int ocupadas = 0;
+                    int libres = 0;
+                    tamanioHotel = hotel.length;
+                    for (int i = 0; i < tamanioHotel; i++) {
+                        for (int j = 0; j < hotel[i].length; j++) {
+                            int num = (i + 1) * 100 + (j + 1);
+                            int ind = i * cantidadHabitacion + j;
+                            if (hotel[i][j]) {
+                                ocupadas++;
+                                System.out.printf("\nHabitacion: %d | -> Cliente:  %s | -> Total: $%.3f", num, clientes[ind], total[ind]);
+                            } else {
+                                libres++;
+                            }
+                        }
+                    }
+                    System.out.println();
+                    System.out.println("Habitaciones ocupadas: " + ocupadas);
+                    System.out.println("Habitaciones disponibles: " + libres);
+                    break;
+                case 5:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            
                 }
         
         } while (opcion != 5);
+        consola.close();
     }
 }
 
